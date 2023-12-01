@@ -33,12 +33,7 @@ export default function MyHeader() {
 
     const menuLeftArr = [
         {
-            label: (
-                <div className='lg:w-16 w-10 rounded-full overflow-hidden'>
-                    <img className='lg:w-24 w-14'
-                        src='https://i.pinimg.com/564x/d0/d7/b0/d0d7b047ddef0af6057424fcaf1f19ce.jpg' alt='logo' />
-                </div>
-            ),
+            label: <img className='w-48 mt-2' src='./img/cineflex-logo-white.png' alt='logo' />,
             key: 'movieBanner',
             showMenu: true,
         },
