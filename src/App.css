@@ -1,0 +1,31 @@
+
+.btn-red {
+  background-color: rgb(155, 19, 19);
+  color: gold;
+  font-weight: 700;
+}
+
+.btn-red:hover {
+  background-color: rgb(108, 29, 29);
+  color: gold;
+}
+.movie_info{
+  display: none;
+}
+.movie_item:hover .movie_info{
+  display:block;
+}
+.screen_lg {
+  filter: drop-shadow(4px 30px 20px rgba(255, 255, 255, 0.5));
+}
+.screen {
+  filter: drop-shadow(4px 20px 10px rgba(255, 255, 255, 0.5));
+}
+:where(.css-dev-only-do-not-override-abcijp).ant-tabs-left >.ant-tabs-content-holder >.ant-tabs-content>.ant-tabs-tabpane, :where(.css-dev-only-do-not-override-abcijp).ant-tabs-left >div>.ant-tabs-content-holder >.ant-tabs-content>.ant-tabs-tabpane{
+  padding-left: 0;
+}
+:where(.css-dev-only-do-not-override-xu9wm8).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: gold;
+  border-color: gold;
+  background-color: rgb(108, 29, 29);
+}
