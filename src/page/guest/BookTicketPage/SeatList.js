@@ -7,13 +7,11 @@ export default function SeatList({ movieShowDetail, cart }) {
     }
     else return (
         <div className='seatList relative'>
-            <div className='top-1/2 pt-10'>
-                <div className='text-center mb-5 lg:mb-0'><span className='px-4 py-3 lg:text-3xl text-2xl mx-auto bg-red-700 font-semibold text-white text-center rounded-lg'
-                >Rạp Chiếu</span></div>
-                <p className='screen screen_lg w-fulllg:h-12 h-2 lg:pt-3 
+            <div className='top-1/2 pt-20'>
+                <p className=' relative -top-16 screen screen_lg w-full lg:h-8 h-2 lg:pt-3 
                 border-b-orange-400 lg:border-50 border-20 
                 border-t-0 border-t-transparent border-l-transparent border-r-transparent'></p>
-                <div className='py-5'>
+                <div className='lg:pb-5'>
                     <div className="grid grid-cols-16 lg:gap-2 gap-1">
                         {movieShowDetail.danhSachGhe.map((seat, index) => (
                             <Seat

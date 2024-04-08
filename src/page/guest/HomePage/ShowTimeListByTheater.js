@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { ConfigProvider, Tabs, message } from 'antd';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getShowTimeByTheaterGroup } from '../../../api/api';
 
 export default function ShowTimeListByTheater() {
-
+    let navigate = useNavigate();
     let [theaterGroupList, setTheaterGroupList] = useState([]);
     let fetchDataTheaterList = async () => {
         try {
@@ -15,19 +15,21 @@ export default function ShowTimeListByTheater() {
         }
     };
     useEffect(() => { fetchDataTheaterList(); }, []);
-    function handleButtonClick() {
-        window.scrollTo(0, 0);
+
+    function handleButtonClick(link) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        navigate(link);
     }
+
     const renderMovieShowTime = (movie) => {
         return movie.lstLichChieuTheoPhim.splice(0, 12).map((show, index) => {
             return (
                 <div key={index}>
-                    <NavLink to={`/purchasing/:${show.maLichChieu}`}>
-                        <button className='btn btn-dark lg:px-auto px-2 w-full'>
-                            <span className='text-white'>{show.ngayChieuGioChieu.substring(0, 10)}</span> -
-                            <span className=' text-yellow-300'><b> {show.ngayChieuGioChieu.substring(14, 20)}</b></span>
-                        </button>
-                    </NavLink>
+                    <button className='btn btn-dark lg:px-auto px-2 w-full'
+                        onClick={() => { handleButtonClick(`/purchasing/:${show.maLichChieu}`) }}>
+                        <span className='text-white'>{show.ngayChieuGioChieu.substring(0, 10)}</span> -
+                        <span className=' text-yellow-300'><b> {show.ngayChieuGioChieu.substring(14, 20)}</b></span>
+                    </button>
                 </div>
             )
         })
@@ -40,11 +42,9 @@ export default function ShowTimeListByTheater() {
                     <div key={movie.maPhim} className='flex flex-col lg:flex-row lg:ml-3 py-2 border-bottom'>
                         <div className='md:flex-none text-center my-auto'>
                             <img className='mx-auto w-32 h-40' src={movie.hinhAnh} alt='' />
-                            <NavLink to={`/detail/:${movie.maPhim}`}>
-                                <button type="button" className="btn btn-red my-3 px-auto"
-                                    onClick={handleButtonClick}
-                                >Chi Tiết Phim</button>
-                            </NavLink>
+                            <button type="button" className="btn btn-red my-3 px-auto"
+                                onClick={() => { handleButtonClick(`/detail/:${movie.maPhim}`) }}
+                            >Chi Tiết Phim</button>
                         </div>
                         <div className='flex-auto mx-auto pl-2'>
                             <h5 className="p-2 m-0 text-warning lg:text-2xl text-lg text-center font-bold">{movie.tenPhim.toUpperCase()}<span className='text-dark d-none'> ({movie.maPhim})</span></h5>

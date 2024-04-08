@@ -74,35 +74,33 @@ export default function BookingCart({ movieShowDetail, cart }) {
     }
 
     return (
-        <div className='container pt-20'>
-            <div className='text-center mb-5'><span className='px-4 py-3 lg:text-3xl text-2xl mx-auto bg-red-700 font-semibold text-white text-center rounded-lg'
-            >Giỏ Hàng</span></div>
+        <div className='container lg:pt-20'>
             <table className='table text-white border'>
                 <thead>
                     <tr className='text-center text-yellow-400'>
-                        <th>Title</th>
+                        <th className='w-28'>Title</th>
                         <th>Detail</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><b className='text-yellow-400'>Tên cụm rạp:</b></td>
+                        <td className='w-28'><b className='text-yellow-400'>Tên cụm rạp:</b></td>
                         <td>{tenCumRap}</td>
                     </tr>
                     <tr>
-                        <td><b className='text-yellow-400'>Địa Chỉ:</b></td>
+                        <td className='w-28'><b className='text-yellow-400'>Địa Chỉ:</b></td>
                         <td>{diaChi}</td>
                     </tr>
                     <tr>
-                        <td><b className='text-yellow-400'>Thời Gian Chiếu:</b></td>
+                        <td className='w-28'><b className='text-yellow-400'>Thời Gian Chiếu:</b></td>
                         <td>{ngayChieu} - {gioChieu}</td>
                     </tr>
                     <tr>
-                        <td><b className='text-yellow-400'>Tên Phim:</b></td>
+                        <td className='w-28'><b className='text-yellow-400'>Tên Phim:</b></td>
                         <td>{tenPhim}</td>
                     </tr>
                     <tr>
-                        <td><b className='text-yellow-400'>Hình Ảnh:</b></td>
+                        <td className='w-28'><b className='text-yellow-400'>Hình Ảnh:</b></td>
                         <td className=''><Image width={150} src={hinhAnh} alt=''></Image></td>
                     </tr>
 

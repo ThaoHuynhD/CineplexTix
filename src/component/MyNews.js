@@ -10,7 +10,7 @@ const newsArr = [
     title: 'Lật mặt 6 thu 20 tỉ trong 1 ngày, đạt 45 tỉ đồng tính đến sáng 29.4',
     type: 'PHIM VIỆT',
     detail: 'Hôm qua, 28.4 là ngày chiếu chính thức đầu tiên tại các rạp của bộ phim Lật mặt 6: Tấm vé định mệnh do Lý Hải đạo diễn và thật bất ngờ, phim thu được 20 tỉ đồng chỉ trong 1 ngày chiếu này. Cộng với 2 ngày chiếu sớm (chỉ từ 19 giờ ngày 26-27.4), tình đến sáng 29.4, Lật mặt 6: Tấm vé định mệnh đã đạt doanh thu tổng cộng 45 tỉ đồng.',
-    image: 'https://th.bing.com/th?id=OIF.p5UzG8sSq95%2b%2bdjZsC1sYA&pid=ImgDet&rs=1',
+    image: 'https://i.pinimg.com/564x/fd/c8/6b/fdc86b5996264fb9dfdc214239220ee9.jpg',
   },
   {
     title: 'Phim mới của Pixar ra mắt tại Cannes 2023',

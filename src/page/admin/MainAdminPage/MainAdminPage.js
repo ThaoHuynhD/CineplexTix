@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  TeamOutlined, IdcardOutlined, CarryOutOutlined } from '@ant-design/icons';
+import { TeamOutlined, IdcardOutlined, CarryOutOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme, } from 'antd';
 import MyHeader from '../../../component/MyHeader';
 import PersonalPage from '../../PersonalPage/PersonalPage';

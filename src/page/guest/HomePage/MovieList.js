@@ -28,7 +28,7 @@ export default function MovieList() {
         setIsModalVisible(false);
     };
     function handleButtonClick() {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
     return (
         <div className='MovieList container pt-32 text-center'>

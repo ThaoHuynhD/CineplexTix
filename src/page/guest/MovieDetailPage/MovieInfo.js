@@ -1,7 +1,6 @@
-import { Modal, Rate, message } from 'antd';
+import { Rate, message } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { getMovieDetail } from '../../../api/api';
-import { PlayCircleOutlined } from '@ant-design/icons';
 
 export default function MovieInfo({ maPhim }) {
     let [movieDetail, setMovieDetail] = useState([]);
@@ -16,17 +15,8 @@ export default function MovieInfo({ maPhim }) {
 
     useEffect(() => {
         fetchDataMovieDetail();
-    });
+    }, []);
 
-
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
-
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
     return (
         <div>
             <div className='z-0 relative h-400 w-screen
@@ -34,38 +24,15 @@ export default function MovieInfo({ maPhim }) {
                             after:absolute after:top-0 after:left-0 after:-z-10
                             after:h-full after:w-screen'
                 style={{
-                    backgroundImage: `url(${movieDetail.hinhAnh})`,
                     backgroundSize: 'cover', backgroundPositionY: '-100px'
                 }}>
                 <div className='container mx-auto px-4 relative overflow-hidden max-h-400'>
-                    <img className='w-full m-auto h-800' src={movieDetail.hinhAnh} alt='' />
+                    <iframe className='w-full m-auto h-400' src={movieDetail.trailer} type="video/mp4" frameBorder="0" allowFullScreen />
                     <div className='z-0 h-full w-full px-2 relative after:block  after:absolute after:top-0 after:left-0 
                                         after:z-10 after:h-full after:w-full after:bg-black after:opacity-50 '>
                     </div>
-                    <div className='w-full h-full absolute bottom-0 left-0 text-center'>
-                        <button onClick={() => { showModal(movieDetail) }}
-                            type='button' className='text-6xl text-white font-bold
-                                absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                                ' ><PlayCircleOutlined /></button>
-                    </div>
                 </div>
             </div>
-            <Modal
-                title={movieDetail.tenPhim}
-                visible={isModalVisible}
-                onCancel={handleCancel}
-                footer={null}
-                width={800}
-            >
-                <iframe
-                    title={movieDetail.tenPhim}
-                    width='100%'
-                    height='400'
-                    src={movieDetail.trailer}
-                    frameborder='0'
-                    allowfullscreen
-                ></iframe>
-            </Modal>
             <div className=' bg-black text-white py-5'>
                 <div className='text-center'><span className='px-4 py-3 mx-auto text-2xl lg:text-3xl bg-red-700 font-semibold text-white text-center rounded-lg'
                 >Chi Tiết Phim</span></div>
