@@ -45,11 +45,11 @@ export default function MyFooter() {
             </div>
             <div className='footer__bottom border-top'>
                 <p className='container lg:px-10 py-10 w-75'>
-                    TIX – SẢN PHẨM CỦA CÔNG TY CỔ PHẦN ZION
-                    Địa chỉ: Z06 Đường số 13, Phường Tân Thuận Đông, Quận 7, Tp. Hồ Chí Minh, Việt Nam.
-                    Giấy chứng nhận đăng ký kinh doanh số: 0101659783,
-                    đăng ký thay đổi lần thứ 30, ngày 22 tháng 01 năm 2020 do Sở kế hoạch và đầu tư Thành phố Hồ Chí Minh cấp.
-                    Số Điện Thoại (Hotline): 1900 545 436</p>
+                    TIX – SẢN PHẨM CỦA CÔNG TY Z
+                    Địa chỉ: fdsd Đường số 13, Phường Tân Thuận Đông, Quận 7, Tp. Hồ Chí Minh, Việt Nam.
+                    Giấy chứng nhận đăng ký kinh doanh số: ________,
+                    đăng ký thay đổi lần thứ 30, ngày 22 tháng 01 năm 2020 do Sở kế hoạch và đầu tư Thành phố H cấp.
+                    Số Điện Thoại (Hotline): 0123 456 789</p>
             </div>
         </div>
     )
