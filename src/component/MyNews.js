@@ -24,7 +24,6 @@ export default function MyNews() {
   return (
     <div id='myNews' className=' py-20'>
       <div className='container lg:p-5 text-center'>
-        <span className='px-5 py-2 lg:text-3xl text-2xl mx-auto font-semibold bg-red-700 text-white text-center rounded-lg'>Tin Tức</span>
         <div className='grid lg:grid-cols-3 grid-cols-1 pt-5'>
           {newsArr.map((news, index) => {
             return (

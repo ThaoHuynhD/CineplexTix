@@ -111,8 +111,6 @@ export default function ShowTimeListByTheater() {
 
     return (
         <div className='container pt-32 pb-5'>
-            <div className='text-center'><span className='px-4 py-3 lg:text-3xl text-2xl my-2 mx-auto bg-red-700 font-semibold text-white text-center rounded-lg'
-            >Rạp và Lịch Chiếu Phim</span></div>
             <div className='bg-slate-900'>
                 <ConfigProvider
                     theme={{

@@ -81,8 +81,6 @@ export default function ShowTimeListByMovie({ maPhim }) {
     }
     return (
         <div className='pt-32 pb-5 container text-center'>
-            <div className='text-center'><span className='px-4 py-3 lg:text-3xl text-2xl my-2 mx-auto bg-red-700 font-semibold text-white text-center rounded-lg'
-            >Rạp và Lịch Chiếu Phim</span></div>
             <h1 className={`mt-5 text-3xl font-bold ${theaterGroupArr.length === 0 ? 'block' : 'hidden'}`}
             >Chưa có Thời gian chiếu phim cụ thể.<br /> Vui lòng thử lại sau</h1>
             <div className='bg-slate-900'>

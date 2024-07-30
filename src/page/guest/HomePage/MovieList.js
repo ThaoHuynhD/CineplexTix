@@ -15,6 +15,7 @@ export default function MovieList() {
     };
     useEffect(() => {
         fetchData();
+        console.log(movieList)
     }, []);
 
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -32,7 +33,6 @@ export default function MovieList() {
     }
     return (
         <div className='MovieList container pt-32 text-center'>
-            <span className='px-5 py-3 lg:text-3xl text-2xl  my-5 mx-auto font-semibold bg-red-700 text-white text-center rounded-lg'>Danh Sách Phim</span>
             <div className="grid lg:grid-cols-4 grid-cols-2 gap-6 mt-5">
                 {movieList.map((movie, index) => {
                     return (

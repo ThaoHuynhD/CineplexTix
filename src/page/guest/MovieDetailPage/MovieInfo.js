@@ -34,8 +34,6 @@ export default function MovieInfo({ maPhim }) {
                 </div>
             </div>
             <div className=' bg-black text-white py-5'>
-                <div className='text-center'><span className='px-4 py-3 mx-auto text-2xl lg:text-3xl bg-red-700 font-semibold text-white text-center rounded-lg'
-                >Chi Tiết Phim</span></div>
                 <div className='container relative pt-10'>
                     <div className='flex lg:flex-row flex-col gap-10 lg:mx-5 mx-auto'>
                         <div className='lg:basis-1/4 pl-0 w-full relative'>
