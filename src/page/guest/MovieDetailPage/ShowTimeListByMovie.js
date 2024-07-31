@@ -2,9 +2,11 @@ import { ConfigProvider, Tabs, message } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { getShowTimeByMovie } from '../../../api/api';
 import { NavLink } from 'react-router-dom';
+import { MONTHNAME } from '../../../constant/constant'
 
 export default function ShowTimeListByMovie({ maPhim }) {
     let [theaterGroupList, setTheaterGroupList] = useState([]);
+
     let fetchDataMovieDetail = async (maPhim) => {
         try {
             let response = await getShowTimeByMovie(maPhim);
@@ -17,15 +19,18 @@ export default function ShowTimeListByMovie({ maPhim }) {
     useEffect(() => {
         fetchDataMovieDetail(maPhim);
     }, [maPhim]);
-
     const renderShowTimeList = (theater) => {
         return theater.lichChieuPhim.map((show, index) => {
             return (
                 <div key={index}>
                     <NavLink to={`/purchasing/:${show.maLichChieu}`}>
                         <button className='btn btn-dark px-0 mx-1 lg:ml-4 my-2 w-full lg:w-40'>
-                            <span className='text-white'>{show.ngayChieuGioChieu.substring(0, 10)}</span> -
-                            <span className='text-yellow-500'><b> {show.ngayChieuGioChieu.substring(14, 20)}</b></span>
+                            <div className="flex justify-center">
+                                <p className='text-white'>{MONTHNAME[Math.round(show.ngayChieuGioChieu.substring(5, 7) - 1)]}
+                                <br/>
+                                <span className='text-white text-2xl font-bold'>{show.ngayChieuGioChieu.substring(8, 10)}</span></p>
+                                <p className='text-yellow-500 text-3xl justify-center pl-2 self-center'><b> {show.ngayChieuGioChieu.substring(14, 20)}</b></p>
+                            </div>
                         </button>
                     </NavLink>
                 </div>

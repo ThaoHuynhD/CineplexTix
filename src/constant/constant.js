@@ -9,3 +9,4 @@ export const GET_DETAIL_USER = 'GET_DETAIL_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const SIGN_OUT_USER = 'SIGN_OUT_USER';
 
+export const MONTHNAME = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

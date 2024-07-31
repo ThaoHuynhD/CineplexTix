@@ -15,7 +15,6 @@ export default function MovieList() {
     };
     useEffect(() => {
         fetchData();
-        console.log(movieList)
     }, []);
 
     const [isModalVisible, setIsModalVisible] = useState(false);

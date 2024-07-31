@@ -10,6 +10,7 @@ export default function ShowTimeListByTheater() {
         try {
             let response = await getShowTimeByTheaterGroup();
             setTheaterGroupList(response.data.content);
+            console.log("repeat")
         } catch {
             message.error("Đã có lỗi xảy ra");
         }
@@ -23,11 +24,12 @@ export default function ShowTimeListByTheater() {
 
     const renderMovieShowTime = (movie) => {
         return movie.lstLichChieuTheoPhim.splice(0, 12).map((show, index) => {
+            let showTime = new Date(show.ngayChieuGioChieu)
             return (
                 <div key={index}>
                     <button className='btn btn-dark lg:px-auto px-2 w-full'
                         onClick={() => { handleButtonClick(`/purchasing/:${show.maLichChieu}`) }}>
-                        <span className='text-white'>{show.ngayChieuGioChieu.substring(0, 10)}</span> -
+                        <span className='text-white'>{showTime.getMonth()}</span> -
                         <span className=' text-yellow-300'><b> {show.ngayChieuGioChieu.substring(14, 20)}</b></span>
                     </button>
                 </div>
