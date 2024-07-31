@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ConfigProvider, Tabs, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { getShowTimeByTheaterGroup } from '../../../api/api';
+import { MONTHNAME } from '../../../constant/constant';
 
 export default function ShowTimeListByTheater() {
     let navigate = useNavigate();
@@ -24,13 +25,16 @@ export default function ShowTimeListByTheater() {
 
     const renderMovieShowTime = (movie) => {
         return movie.lstLichChieuTheoPhim.splice(0, 12).map((show, index) => {
-            let showTime = new Date(show.ngayChieuGioChieu)
             return (
                 <div key={index}>
                     <button className='btn btn-dark lg:px-auto px-2 w-full'
                         onClick={() => { handleButtonClick(`/purchasing/:${show.maLichChieu}`) }}>
-                        <span className='text-white'>{showTime.getMonth()}</span> -
-                        <span className=' text-yellow-300'><b> {show.ngayChieuGioChieu.substring(14, 20)}</b></span>
+                            <div className="flex justify-center">
+                                <p className='text-white w-24'>{MONTHNAME[Math.round(show.ngayChieuGioChieu.substring(5, 7) - 1)]}
+                                <br/>
+                                <span className='text-white text-2xl font-bold'>{show.ngayChieuGioChieu.substring(8, 10)}</span></p>
+                                <p className='text-yellow-500 text-3xl justify-center pl-2 self-center'><b> {show.ngayChieuGioChieu.substring(14, 20)}</b></p>
+                            </div>
                     </button>
                 </div>
             )
@@ -42,15 +46,15 @@ export default function ShowTimeListByTheater() {
             if (movie.lstLichChieuTheoPhim.length !== 0) {
                 return (
                     <div key={movie.maPhim} className='flex flex-col lg:flex-row lg:ml-3 py-2 border-bottom'>
-                        <div className='md:flex-none text-center my-auto'>
+                        <div className='md:flex-none text-center my-auto mr-3'>
                             <img className='mx-auto w-32 h-40' src={movie.hinhAnh} alt='' />
                             <button type="button" className="btn btn-red my-3 px-auto"
                                 onClick={() => { handleButtonClick(`/detail/:${movie.maPhim}`) }}
                             >Chi Tiết Phim</button>
                         </div>
-                        <div className='flex-auto mx-auto pl-2'>
+                        <div className='flex-auto mx-auto pl-2 pr-3'>
                             <h5 className="p-2 m-0 text-warning lg:text-2xl text-lg text-center font-bold">{movie.tenPhim.toUpperCase()}<span className='text-dark d-none'> ({movie.maPhim})</span></h5>
-                            <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-2 grid-cols-1">{renderMovieShowTime(movie)}</div>
+                            <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-4 grid-cols-1">{renderMovieShowTime(movie)}</div>
                         </div>
                     </div>
                 )
@@ -113,7 +117,7 @@ export default function ShowTimeListByTheater() {
 
     return (
         <div className='container pt-32 pb-5'>
-            <div className='bg-slate-900'>
+            <div className='bg-slate-900 mx-20'>
                 <ConfigProvider
                     theme={{
                         token: {
