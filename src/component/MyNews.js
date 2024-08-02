@@ -22,7 +22,7 @@ const newsArr = [
 ]
 export default function MyNews() {
   return (
-    <div id='myNews' className=' py-20'>
+    <section id='myNews' className=' py-20 mx-20'>
       <div className='container lg:p-5 text-center'>
         <div className='grid lg:grid-cols-3 grid-cols-1 pt-5'>
           {newsArr.map((news, index) => {
@@ -38,6 +38,6 @@ export default function MyNews() {
           })}
         </div>
       </div>
-    </div>
+    </section>
   )
 }

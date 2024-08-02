@@ -6,7 +6,7 @@ export default function MyFooter() {
     return (
         <div className='mt-30 py-30 bg-slate-900 text-white'>
             <div className='footer__top container pl-10 lg:pl-0'>
-                <div className='grid md:grid-cols-4 grid-cols-2 gap-4 pb-5'>
+                <div className='grid md:grid-cols-4 grid-cols-2 gap-4 pb-5 mx-20'>
                     <div className=''>
                         <h1 className='pt-6 pb-4 lg:p-5 text-xl text-yellow-500 font-semibold'>Giới thiệu</h1>
                         <ul>

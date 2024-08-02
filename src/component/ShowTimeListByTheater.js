@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { ConfigProvider, Tabs, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { getShowTimeByTheaterGroup } from '../../../api/api';
-import { MONTHNAME } from '../../../constant/constant';
+import { getShowTimeByTheaterGroup } from '../api/api';
+import { MONTHNAME } from '../constant/constant';
 
 export default function ShowTimeListByTheater() {
     let navigate = useNavigate();

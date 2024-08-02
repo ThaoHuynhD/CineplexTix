@@ -2,7 +2,7 @@ import React from 'react'
 import MovieInfo from './MovieInfo'
 import ShowTimeListByMovie from './ShowTimeListByMovie'
 import { useParams } from 'react-router-dom';
-import MovieList from '../HomePage/MovieList';
+import MovieList from '../../../component/MovieList';
 export default function MovieDetailPage() {
   let params = useParams();
   let maPhim = params.maPhim.substring(1, params.maPhim.length);

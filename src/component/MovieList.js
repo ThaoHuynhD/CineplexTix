@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getMovieList } from '../../../api/api';
+import { getMovieList } from '../api/api';
 import { Modal, message } from 'antd';
 import { NavLink } from 'react-router-dom';
 

@@ -8,7 +8,7 @@ import { ConfigProvider } from 'antd';
 export default function MyHeader() {
     let navigate = useNavigate();
     let info = userLocalStorage.get();
-
+    let logoURL = '/img/cineflex-logo-white.svg';
     let isAdmin;
     if (info !== null && info !== undefined) { isAdmin = info.maLoaiNguoiDung === 'QuanTri'; }
 
@@ -39,7 +39,7 @@ export default function MyHeader() {
 
     const menuLeftArr = [
         {
-            label: <img className='w-48 mt-2' src='./img/cineflex-logo-white.png' alt='logo' />,
+            label: <img src={logoURL} className='w-48 mt-2' alt='cineplextix' />,
             key: 'movieBanner',
             showMenu: true,
         },
@@ -116,7 +116,7 @@ export default function MyHeader() {
         }
     };
 
-    return <>
+    return <div className='mb-20'>
         <ConfigProvider
             theme={{
                 token: {
@@ -183,5 +183,5 @@ export default function MyHeader() {
                 </div>
             )}
         </ConfigProvider>
-    </>
+    </div>
 };

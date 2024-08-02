@@ -8,7 +8,7 @@ export default function BookingCart({ movieShowDetail, cart }) {
     let dispatch = useDispatch();
 
     if (!movieShowDetail || !movieShowDetail.danhSachGhe || !cart) {
-        return <div>Loading...</div>;
+        return <div className='w-screen h-screen z-50'><div className='text-5xl bg-red-600 h-500 pt-80'>Loading...</div></div>;
     }
     const renderTicketCart = () => {
         let normalTicketList = [];
@@ -16,9 +16,7 @@ export default function BookingCart({ movieShowDetail, cart }) {
         cart.forEach(seat => {
             if (seat.loaiGhe === 'Thuong') {
                 normalTicketList.push(seat);
-            } else {
-                vipTicketList.push(seat);
-            }
+            } else { vipTicketList.push(seat); }
         });
         return (
             <tbody>{normalTicketList.length !== 0 ?
@@ -35,7 +33,6 @@ export default function BookingCart({ movieShowDetail, cart }) {
                         <td>{vipTicketList.reduce((sum, seat) => sum + seat.giaVe, 0).toLocaleString()}</td>
                     </tr>
                     : null}
-
             </tbody>
         )
     }
@@ -60,6 +57,13 @@ export default function BookingCart({ movieShowDetail, cart }) {
     }
 
     let { diaChi, maLichChieu, gioChieu, hinhAnh, ngayChieu, tenCumRap, tenPhim } = movieShowDetail.thongTinPhim;
+    let cartDetail = [
+        { title: 'Tên cụm rạp', value: tenCumRap },
+        { title: 'Địa Chỉ', value: diaChi },
+        { title: 'Thời Gian Chiếu', value: ngayChieu + ' - ' + gioChieu },
+        { title: 'Tên Phim', value: tenPhim },
+        { title: 'Hình Ảnh', value: <Image width={150} src={hinhAnh} alt=''></Image> }
+    ];
     let danhSachVeUpdate = [];
     cart.forEach(ticket => {
         let newTicket = {
@@ -74,50 +78,29 @@ export default function BookingCart({ movieShowDetail, cart }) {
     }
 
     return (
-        <div className='container lg:pt-20'>
+        <div className='container'>
             <table className='table text-white border'>
-                <thead>
-                    <tr className='text-center text-yellow-400'>
-                        <th className='w-28'>Title</th>
-                        <th>Detail</th>
-                    </tr>
-                </thead>
                 <tbody>
-                    <tr>
-                        <td className='w-28'><b className='text-yellow-400'>Tên cụm rạp:</b></td>
-                        <td>{tenCumRap}</td>
+                    {cartDetail.map((item, index) => <tr key={index}>
+                        <td className='w-40'><b className='text-yellow-400'>{item.title}:</b></td>
+                        <td>{item.value}</td>
                     </tr>
+                    )}
                     <tr>
-                        <td className='w-28'><b className='text-yellow-400'>Địa Chỉ:</b></td>
-                        <td>{diaChi}</td>
-                    </tr>
-                    <tr>
-                        <td className='w-28'><b className='text-yellow-400'>Thời Gian Chiếu:</b></td>
-                        <td>{ngayChieu} - {gioChieu}</td>
-                    </tr>
-                    <tr>
-                        <td className='w-28'><b className='text-yellow-400'>Tên Phim:</b></td>
-                        <td>{tenPhim}</td>
-                    </tr>
-                    <tr>
-                        <td className='w-28'><b className='text-yellow-400'>Hình Ảnh:</b></td>
-                        <td className=''><Image width={150} src={hinhAnh} alt=''></Image></td>
-                    </tr>
-
-                    <tr>
-                        <td colSpan={2} className='p-0'>{cart.length !== 0 ? <table className='table text-white border-none mt-3'>
-                            <thead>
-                                <tr>
-                                    <td colSpan={3}><b className='text-yellow-400'>Chi Tiết Vé Chọn:</b></td>
-                                </tr>
-                                <tr>
-                                    <th>Danh sách vé:</th>
-                                    <th>Hạng vé:</th>
-                                    <th>Thành tiền:</th>
-                                </tr>
-                            </thead>
-                            {renderTicketCart()}
-                        </table> : null}
+                        <td colSpan={2} className='p-0 m-0'>{cart.length !== 0 ?
+                            <table className='table text-white border-none m-0'>
+                                <thead>
+                                    <tr>
+                                        <td colSpan={3}><b className='text-yellow-400'>Chi Tiết Vé Chọn:</b></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Danh sách vé:</th>
+                                        <th>Hạng vé:</th>
+                                        <th>Thành tiền:</th>
+                                    </tr>
+                                </thead>
+                                {renderTicketCart()}
+                            </table> : null}
                         </td>
                     </tr>
                     <tr>
@@ -126,9 +109,9 @@ export default function BookingCart({ movieShowDetail, cart }) {
                             {cart.reduce((sum, seat) => sum + seat.giaVe, 0).toLocaleString()} VND
                         </td>
                     </tr>
-                    <tr><td colSpan={2} className='text-center'><button className='btn btn-red mt-3 w-full' onClick={() => handleShoppingCart(shoppingValue)}>Buy Ticket</button></td></tr>
                 </tbody>
             </table>
+            <button className='btn btn-red w-full text-lg' onClick={() => handleShoppingCart(shoppingValue)}>Buy Ticket</button>
         </div>
     )
 }

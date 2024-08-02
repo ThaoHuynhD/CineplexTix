@@ -14,12 +14,39 @@
 .movie_item:hover .movie_info {
   display: block;
 }
-.screen_lg {
-  filter: drop-shadow(4px 30px 20px rgba(255, 255, 255, 0.5));
+
+.screenImg {
+  --c: 20px; /* control the size */
+  width: 100%;
+  margin-top: 0;
+  display: inline-block;
+  box-sizing: border-box;
+  border: solid var(--c) transparent;
+  border-radius: 15%;
+  border-top-color: #7bffff;
+  background: radial-gradient(farthest-side, #7bffff 98%, transparent) left 4%
+      top 4%,
+    radial-gradient(farthest-side, #7bffff 98%, transparent) right 4% top 4.1%;
+  background-size: var(--c) var(--c);
+  background-origin: border-box;
+  background-repeat: no-repeat;
 }
-.screen {
-  filter: drop-shadow(4px 20px 10px rgba(255, 255, 255, 0.5));
+.screenImg::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }
+
+.screenLight {
+  box-shadow: -25px 40px 80px 10px #9bffff;
+  width: 80%;
+  margin: 0 11%;
+  height: 20px;
+  position: absolute;
+  top: 0px;
+  left: 0;
+}
+
 :where(.css-dev-only-do-not-override-abcijp).ant-tabs-left
   > .ant-tabs-content-holder
   > .ant-tabs-content
@@ -66,4 +93,9 @@
   > .ant-tabs-content
   > .ant-tabs-tabpane {
   padding: 0;
+}
+section {
+  margin-left: 80px;
+  margin-right: 80px;
+  color: #2bdd49;
 }

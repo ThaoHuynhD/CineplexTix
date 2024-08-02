@@ -6,6 +6,8 @@ import { getMovieShowTime } from '../../../api/api';
 import SeatList from './SeatList';
 import BookingCart from './BookingCart';
 import { userLocalStorage } from '../../../api/localServices';
+import ShowTimeListByTheater from '../../../component/ShowTimeListByTheater';
+import MovieFilterByName from '../../../component/MovieFilterByName';
 
 export default function BookTicketPage() {
   let info = userLocalStorage.get();
@@ -42,6 +44,8 @@ export default function BookTicketPage() {
           <BookingCart movieShowDetail={movieShowDetail} cart={cart} />
         </div>
       </div>
+      <MovieFilterByName />
+      <ShowTimeListByTheater />
     </div>
   )
 }

@@ -1,12 +1,12 @@
 import React from 'react'
-import SliderMovie from './SliderMovie';
-import MovieList from './MovieList';
-import ShowTimeListByTheater from './ShowTimeListByTheater';
-import MovieFilterByName from './MovieFilterByName';
+import SliderMovie from '../../../component/SliderMovie';
+import ShowTimeListByTheater from '../../../component/ShowTimeListByTheater';
+import MovieFilterByName from '../../../component/MovieFilterByName';
+import MovieList from '../../../component/MovieList';
 
 export default function HomePage() {
     return (
-        <div className='mt-18'>
+        <div className='mt-18 '>
             <div id='movieBanner'><SliderMovie /></div>
             <div id='movieFilter'><MovieFilterByName /></div>
             <div id='schedule'><MovieList /></div>
@@ -14,3 +14,4 @@ export default function HomePage() {
         </div>
     )
 }
+

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Select, message } from 'antd';
-import { getShowTimeByTheaterGroup } from '../../../api/api';
+import { getShowTimeByTheaterGroup } from '../api/api';
 import { NavLink } from 'react-router-dom';
 
 export default function MovieFilterByName() {
