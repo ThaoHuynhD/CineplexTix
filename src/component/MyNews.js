@@ -22,17 +22,17 @@ const newsArr = [
 ]
 export default function MyNews() {
   return (
-    <section id='myNews' className=' py-20 mx-20'>
+    <section id='myNews' className='mx-20'>
       <div className='container lg:p-5 text-center'>
-        <div className='grid lg:grid-cols-3 grid-cols-1 pt-5'>
+        <div className='grid lg:grid-cols-3 grid-cols-1'>
           {newsArr.map((news, index) => {
             return (
-              <div key={index} className='px-2 mx-auto pt-10'>
+              <div key={index} className='px-2 mx-auto'>
                 <img className='mx-auto' style={{ width: 420, height: 200 }} src={news.image} alt='' />
                 <div className='col p-0 lg:px-4 text-left'>
                   <h1 className=' text-yellow-400 text-lg font-bold py-2'>{news.title}</h1>
                   <span className='text-green-600 font-semibold text-right'>{news.type}</span>
-                  <p>{news.detail.substring(0, 200)}{news.detail.length > 200 ? '...' : ''}</p>
+                  <p className='text-white'>{news.detail.substring(0, 200)}{news.detail.length > 200 ? '...' : ''}</p>
                 </div>
               </div>)
           })}

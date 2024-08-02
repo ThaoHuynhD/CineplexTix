@@ -95,7 +95,6 @@
   padding: 0;
 }
 section {
-  margin-left: 80px;
-  margin-right: 80px;
+  margin: 50px 80px;
   color: #2bdd49;
 }

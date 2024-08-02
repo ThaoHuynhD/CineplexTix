@@ -29,12 +29,12 @@ export default function ShowTimeListByTheater() {
                 <div key={index}>
                     <button className='btn btn-dark lg:px-auto px-2 w-full'
                         onClick={() => { handleButtonClick(`/purchasing/:${show.maLichChieu}`) }}>
-                            <div className="flex justify-center">
-                                <p className='text-white w-24'>{MONTHNAME[Math.round(show.ngayChieuGioChieu.substring(5, 7) - 1)]}
-                                <br/>
+                        <div className="flex justify-center">
+                            <p className='text-white w-24'>{MONTHNAME[Math.round(show.ngayChieuGioChieu.substring(5, 7) - 1)]}
+                                <br />
                                 <span className='text-white text-2xl font-bold'>{show.ngayChieuGioChieu.substring(8, 10)}</span></p>
-                                <p className='text-yellow-500 text-3xl justify-center pl-2 self-center'><b> {show.ngayChieuGioChieu.substring(14, 20)}</b></p>
-                            </div>
+                            <p className='text-yellow-500 text-3xl justify-center pl-2 self-center'><b> {show.ngayChieuGioChieu.substring(14, 20)}</b></p>
+                        </div>
                     </button>
                 </div>
             )
@@ -116,8 +116,8 @@ export default function ShowTimeListByTheater() {
     })
 
     return (
-        <div className='container pt-32 pb-5'>
-            <div className='bg-slate-900 mx-20'>
+        <section className='container'>
+            <div className='bg-slate-900 xxl:mx-20'>
                 <ConfigProvider
                     theme={{
                         token: {
@@ -141,7 +141,7 @@ export default function ShowTimeListByTheater() {
                 </ConfigProvider>
 
             </div>
-        </div>
+        </section>
     )
 }
 

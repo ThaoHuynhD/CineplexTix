@@ -31,7 +31,7 @@ export default function MovieList() {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
     return (
-        <div className='MovieList container pt-32 text-center'>
+        <section className='MovieList container text-center'>
             <div className="grid lg:grid-cols-4 grid-cols-2 gap-6 mt-5">
                 {movieList.map((movie, index) => {
                     return (
@@ -72,6 +72,6 @@ export default function MovieList() {
                     );
                 })}
             </div>
-        </div>
+        </section>
     )
 }

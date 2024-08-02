@@ -75,41 +75,39 @@ export default function MovieFilterByName() {
             })
     })
     return (
-        <div className='pt-20'>
-            <div className=" relative">
-                <p className=' absolute -top-6 left-0 text-center w-full'>
-                    <span className='px-5 py-3 lg:text-3xl text-2xl mx-auto font-semibold bg-red-700 text-white rounded-lg'
-                    >Tìm kiếm lịch chiếu</span>
-                </p>
-                <div className="container mt-20 pt-12 pb-4 px-8 bg-slate-800 text-center rounded">
-                    <div className='grid lg:grid-cols-4 grid-cols-1 gap-8'>
-                        <Select
-                            defaultValue="Chọn Phim"
-                            className='w-full'
-                            options={movieNameArr}
-                            onChange={handleMovieSelection}
-                        />
-                        <Select
-                            className='w-full'
-                            options={movieTheaterArr}
-                            onChange={handleTheaterSelection}
-                            disabled={movieSelected === null}
-                            value={{ label: theaterSelected === null ? "Chọn Rạp Phim" : theaterSelected.tenCumRap, value: theaterSelected }}
-                        />
-                        <Select
-                            className='w-full'
-                            options={movieShowTimeArr}
-                            onChange={handleShowSelection}
-                            disabled={theaterSelected === null}
-                            value={{ label: showSelected === null ? "Chọn Suất Chiếu" : showSelected.ngayChieuGioChieu, value: showSelected }}
-                        />
-                        <NavLink to={`/purchasing/:${showSelected}`}>
-                            <button
-                                className='btn btn-red w-full'
-                                disabled={showSelected === null}
-                            >Mua Vé</button>
-                        </NavLink>
-                    </div>
+        <div className="relative">
+            <p className=' absolute -top-6 left-0 text-center w-full'>
+                <span className='px-5 py-3 lg:text-3xl text-2xl mx-auto font-semibold bg-red-700 text-white rounded-lg'
+                >Tìm kiếm lịch chiếu</span>
+            </p>
+            <div className="container mt-20 pt-12 pb-4 px-8 bg-slate-800 text-center rounded">
+                <div className='grid lg:grid-cols-4 grid-cols-1 gap-8'>
+                    <Select
+                        defaultValue="Chọn Phim"
+                        className='w-full'
+                        options={movieNameArr}
+                        onChange={handleMovieSelection}
+                    />
+                    <Select
+                        className='w-full'
+                        options={movieTheaterArr}
+                        onChange={handleTheaterSelection}
+                        disabled={movieSelected === null}
+                        value={{ label: theaterSelected === null ? "Chọn Rạp Phim" : theaterSelected.tenCumRap, value: theaterSelected }}
+                    />
+                    <Select
+                        className='w-full'
+                        options={movieShowTimeArr}
+                        onChange={handleShowSelection}
+                        disabled={theaterSelected === null}
+                        value={{ label: showSelected === null ? "Chọn Suất Chiếu" : showSelected.ngayChieuGioChieu, value: showSelected }}
+                    />
+                    <NavLink to={`/purchasing/:${showSelected}`}>
+                        <button
+                            className='btn btn-red w-full'
+                            disabled={showSelected === null}
+                        >Mua Vé</button>
+                    </NavLink>
                 </div>
             </div>
         </div>
