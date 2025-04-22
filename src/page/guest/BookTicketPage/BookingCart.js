@@ -1,15 +1,12 @@
 import React from 'react'
 import { getTicketBooked } from '../../../api/api';
-import { PUCHASING_CART } from '../../../constant/constant';
+import { ERROR_MESSAGE_BUY_TICKET, PUCHASING_CART, SUCCESS_MESSAGE_BUY_TICKET } from '../../../constant/constant';
 import { Image, message } from 'antd';
 import { useDispatch } from 'react-redux';
 
 export default function BookingCart({ movieShowDetail, cart }) {
     let dispatch = useDispatch();
 
-    if (!movieShowDetail || !movieShowDetail.danhSachGhe || !cart) {
-        return <div className='w-screen h-screen z-50'><div className='text-5xl bg-red-600 h-500 pt-80'>Loading...</div></div>;
-    }
     const renderTicketCart = () => {
         let normalTicketList = [];
         let vipTicketList = [];
@@ -38,18 +35,16 @@ export default function BookingCart({ movieShowDetail, cart }) {
     }
     const fetchData = async (values) => {
         try {
-            const response = await getTicketBooked(values);
-            console.log("response: ", response);
+            await getTicketBooked(values);
             dispatch({
                 type: PUCHASING_CART,
             });
-            message.success("Mua vé thành công");
+            message.success(SUCCESS_MESSAGE_BUY_TICKET);
             setTimeout(() => {
                 window.location.href = '/personal';
             }, 1000);
-        } catch (error) {
-            message.error("Mua vé thất bại");
-            console.log(error);
+        } catch {
+            message.error(ERROR_MESSAGE_BUY_TICKET);
         }
     };
     let handleShoppingCart = (values) => {

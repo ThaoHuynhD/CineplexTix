@@ -7,6 +7,7 @@ import { DeleteOutlined, FormOutlined } from '@ant-design/icons';
 import AddUser from './AddUser';
 import FixUser from './FixUser';
 import SearchUser from './SearchUser';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE_DELETE_USER } from '../../../constant/constant';
 
 export default function UserManagement() {
   const [form] = Form.useForm();
@@ -22,7 +23,7 @@ export default function UserManagement() {
       let response = await getDataUserList();
       setUserList(response.data.content);
     } catch {
-      message.error("Đã có lỗi xảy ra");
+      message.error(ERROR_MESSAGE);
     }
   };
 
@@ -41,7 +42,7 @@ export default function UserManagement() {
       }
       form.setFieldsValue(upDatedUser);
     } catch {
-      message.error("Đã có lỗi xảy ra");
+      message.error(ERROR_MESSAGE);
     }
   };
 
@@ -50,8 +51,8 @@ export default function UserManagement() {
     try {
       await fetchDataUserInfo(tenTaiKhoan);
       setIsFixModalOpen(true);
-    } catch (error) {
-      console.error(error);
+    } catch {
+      message.error(ERROR_MESSAGE);
     }
   };
   const handleAddCancel = () => { setIsAddModalOpen(false); };
@@ -60,10 +61,9 @@ export default function UserManagement() {
   const handleUserDel = async (tenTaiKhoan) => {
     try {
       await getDataUserDelete(tenTaiKhoan);
-      message.success("Xóa tài khoản người dùng thành công");
-    } catch (error) {
-      message.error(error.response.data.content);
-      console.log(error);
+      message.success(SUCCESS_MESSAGE_DELETE_USER);
+    } catch {
+      message.error(ERROR_MESSAGE);
     }
   };
 

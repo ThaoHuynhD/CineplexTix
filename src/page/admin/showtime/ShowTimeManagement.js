@@ -6,6 +6,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import dayjs from 'dayjs';
 import MovieInformation from './MovieInformation'
 import AddShowTime from './AddShowTime';
+import { ERROR_MESSAGE } from '../../../constant/constant';
 
 export default function ShowTimeManagement({ selectedMaPhim }) {
     const [movieList, setMovieList] = useState([]);
@@ -25,7 +26,7 @@ export default function ShowTimeManagement({ selectedMaPhim }) {
             let response = await getMovieList();
             setMovieList(response.data.content);
         } catch {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
         }
     };
 
@@ -58,9 +59,8 @@ export default function ShowTimeManagement({ selectedMaPhim }) {
                 ngayKhoiChieu: formattedDate,
             }
             form.setFieldsValue(updatedMovie);
-        } catch (error) {
-            message.error("Đã có lỗi xảy ra");
-            console.log(error.response.data);
+        } catch {
+            message.error(ERROR_MESSAGE);
         }
     };
     const showModal = (maPhim) => {

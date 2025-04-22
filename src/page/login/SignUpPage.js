@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, Input, message, } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { SIGN_UP_USER } from '../../constant/constant';
+import { ERROR_MESSAGE, SIGN_UP_USER, SUCCESS_MESSAGE_SIGN_UP } from '../../constant/constant';
 import { getUserSignUp } from '../../api/api';
 export default function SignUpPage() {
     const dispatch = useDispatch();
@@ -33,14 +33,13 @@ export default function SignUpPage() {
                 type: SIGN_UP_USER,
                 payload: response.data.content,
             });
-            message.success("Đăng ký thành công");
+            message.success(SUCCESS_MESSAGE_SIGN_UP);
             setTimeout(() => {
                 window.location.reload();
                 window.location.href = "/sign-in"
             }, 1000);
-        } catch (error) {
-            message.error(error.response.data.content);
-            console.log(error);
+        } catch {
+            message.error(ERROR_MESSAGE);
         }
     };
 

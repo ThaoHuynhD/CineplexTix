@@ -1,6 +1,7 @@
 import React from 'react'
 import { getDataUserAddNew, } from '../../../api/api';
 import { Button, Form, Input, Select, message } from 'antd';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE_ADD_USER } from '../../../constant/constant';
 
 export default function AddUser({ form, setIsAddModalOpen }) {
     const formItemLayout = {
@@ -25,11 +26,10 @@ export default function AddUser({ form, setIsAddModalOpen }) {
     const handleUserAdd = async (values) => {
         try {
             await getDataUserAddNew(values);
-            message.success("Thêm người dùng thành công");
+            message.success(SUCCESS_MESSAGE_ADD_USER);
             setIsAddModalOpen(false);
-        } catch (error) {
-            message.error(error.response.data.content);
-            console.log(error);
+        } catch {
+            message.error(ERROR_MESSAGE);
         }
     };
     return (

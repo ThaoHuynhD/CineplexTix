@@ -1,9 +1,10 @@
 import React from 'react'
+import Loader from '../../component/Loader';
 
 export default function BookingHistory({ userDetail }) {
     let thongTinDatVe = userDetail.thongTinDatVe;
     if (!thongTinDatVe || !userDetail) {
-        return <div>Loading...</div>;
+        return <Loader />;
     }
     const renderDanhSachGheDaDat = (danhSachGhe) => {
         let chairArr = [];

@@ -1,6 +1,7 @@
 import { message } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { getMovieDetail } from '../../../api/api';
+import { ERROR_MESSAGE } from '../../../constant/constant';
 
 export default function MovieInformation({ maPhim }) {
     let [movieDetail, setMovieDetail] = useState([]);
@@ -9,7 +10,7 @@ export default function MovieInformation({ maPhim }) {
             let response = await getMovieDetail(maPhim);
             setMovieDetail(response.data.content);
         } catch {
-            message.error('Đã có lỗi xảy ra');
+            message.error(ERROR_MESSAGE);
         }
     };
 

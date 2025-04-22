@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, Modal, message } from 'antd';
 import { userDetailLocalStorage } from '../../api/localServices';
-import { UPDATE_USER } from '../../constant/constant';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE_UPDATE_USER, UPDATE_USER } from '../../constant/constant';
 import { getUserInfoUpdated } from '../../api/api';
 import { useDispatch } from 'react-redux';
+import Loader from '../../component/Loader';
 
 export default function PersonalDetail({ userDetail }) {
     const [form] = Form.useForm();
@@ -43,30 +44,27 @@ export default function PersonalDetail({ userDetail }) {
     }, [userDetail, form]);
 
     if (!userDetail || userDetail.length === 0) {
-        return <div>Loading...</div>;
+        return <Loader />;
     }
 
     const fetchData = async (values) => {
         try {
             const response = await getUserInfoUpdated(values);
-            console.log("response.data.content: ", response.data.content);
             dispatch({
                 type: UPDATE_USER,
                 payload: response.data.content,
             });
             userDetailLocalStorage.set(response.data.content);
-            message.success("Cập nhật thành công");
+            message.success(SUCCESS_MESSAGE_UPDATE_USER);
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
-        } catch (error) {
-            message.error(error.response.data.content);
-            console.log(error);
+        } catch {
+            message.error(ERROR_MESSAGE);
         }
     };
 
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
         fetchData(values);
     }
 

@@ -2,7 +2,7 @@ import { ConfigProvider, Tabs, message } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { getShowTimeByMovie } from '../../../api/api';
 import { NavLink } from 'react-router-dom';
-import { MONTHNAME } from '../../../constant/constant'
+import { ERROR_MESSAGE, MONTHNAME } from '../../../constant/constant'
 
 export default function ShowTimeListByMovie({ maPhim }) {
     let [theaterGroupList, setTheaterGroupList] = useState([]);
@@ -12,7 +12,7 @@ export default function ShowTimeListByMovie({ maPhim }) {
             let response = await getShowTimeByMovie(maPhim);
             setTheaterGroupList(response.data.content);
         } catch {
-            message.error('Đã có lỗi xảy ra');
+            message.error(ERROR_MESSAGE);
         }
     };
 

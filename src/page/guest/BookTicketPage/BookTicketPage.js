@@ -8,11 +8,13 @@ import BookingCart from './BookingCart';
 import { userLocalStorage } from '../../../api/localServices';
 import ShowTimeListByTheater from '../../../component/ShowTimeListByTheater';
 import MovieFilterByName from '../../../component/MovieFilterByName';
+import Loader from '../../../component/Loader';
+import { ERROR_MESSAGE, ERROR_MESSAGE_PERMISSION } from '../../../constant/constant';
 
 export default function BookTicketPage() {
   let info = userLocalStorage.get();
   if (info === null) {
-    message.error("Vui Lòng Đăng Nhập Để Đặt Vé");
+    message.error(ERROR_MESSAGE_PERMISSION);
     setTimeout(() => {
       window.location.href = '/sign-in';
     }, 500);
@@ -29,11 +31,14 @@ export default function BookTicketPage() {
         const response = await getMovieShowTime(maLichChieu);
         setMovieShowDetail(response.data.content);
       } catch {
-        message.error("Đã có lỗi xảy ra");
+        message.error(ERROR_MESSAGE);
       }
     };
     fetchDataMovieShowDetail();
   }, [maLichChieu]);
+  if (!movieShowDetail || !movieShowDetail.danhSachGhe || !cart) {
+    return <Loader />;
+  }
   return (
     <div className="container lg:p-10">
       <div className='flex lg:flex-row flex-col'>

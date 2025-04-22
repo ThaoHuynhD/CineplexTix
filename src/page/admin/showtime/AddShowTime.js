@@ -3,6 +3,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { getShowTimeCreate } from '../../../api/api';
 import { getTheaterByTheaterGroup, getTheaterGroup } from '../../../api/api';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE_ADD_SHOWTIME } from '../../../constant/constant';
 
 export default function AddShowTime({ form, setIsModalOpen, movieSelected }) {
     const [theaterGroupList, setTheaterGroupList] = useState([]);
@@ -33,10 +34,10 @@ export default function AddShowTime({ form, setIsModalOpen, movieSelected }) {
         }
         try {
             await getShowTimeCreate(showTimeUpdate);
-            message.success("Tạo Lịch Chiếu thành công");
+            message.success(SUCCESS_MESSAGE_ADD_SHOWTIME);
             setIsModalOpen(false);
         } catch (error) {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
             console.log(error);
         }
     };
@@ -46,7 +47,7 @@ export default function AddShowTime({ form, setIsModalOpen, movieSelected }) {
             let response = await getTheaterGroup();
             setTheaterGroupList(response.data.content);
         } catch {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
         }
     };
 
@@ -56,7 +57,7 @@ export default function AddShowTime({ form, setIsModalOpen, movieSelected }) {
             let response = await getTheaterByTheaterGroup(theaterGroupSelected);
             setTheaterList(response.data.content);
         } catch {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
         }
     };
     useEffect(() => {

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getUserSignIn } from '../../api/api';
 import { userLocalStorage } from '../../api/localServices';
 import { Button, Form, Input, message } from "antd";
-import { SIGN_IN_USER } from '../../constant/constant';
+import { ERROR_MESSAGE_WRONG_USER, SIGN_IN_USER, SUCCESS_MESSAGE_SIGN_IN } from '../../constant/constant';
 
 export default function SignInPage() {
     const dispatch = useDispatch();
@@ -36,19 +36,17 @@ export default function SignInPage() {
                 payload: response.data.content,
             });
             userLocalStorage.set(response.data.content);
-            message.success("Đăng nhập thành công");
+            message.success(SUCCESS_MESSAGE_SIGN_IN);
             setTimeout(() => {
                 window.location.reload();
                 window.location.href = "/"
             }, 1000);
-        } catch (error) {
-            message.error("Tài khoản hoặc mật khẩu không chính xác");
-            console.log(error);
+        } catch {
+            message.error(ERROR_MESSAGE_WRONG_USER);
         }
     };
 
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
         fetchData(values);
     }
 

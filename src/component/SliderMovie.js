@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Carousel, message } from 'antd';
 import { getMovieBanner } from '../api/api.js';
+import { ERROR_MESSAGE } from '../constant/constant.js';
 
 export default function SliderMovie() {
     const [banner, setBanner] = useState([]);
@@ -9,7 +10,7 @@ export default function SliderMovie() {
             let response = await getMovieBanner();
             setBanner(response.data.content);
         } catch {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
         }
     };
     useEffect(() => {

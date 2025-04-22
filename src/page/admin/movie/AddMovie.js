@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { getDataMovieAddNew } from '../../../api/api';
 import { Button, DatePicker, Form, Image, Input, Switch, message } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE_ADD_MOVIE } from '../../../constant/constant';
 
 export default function AddMovie({ setIsAddModalOpen, form, dayjs }) {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -33,7 +34,6 @@ export default function AddMovie({ setIsAddModalOpen, form, dayjs }) {
         const parsedDate = dayjs(values.ngayKhoiChieu, { timeZone: "GMT" });
         const formattedDate = parsedDate.format('DD/MM/YYYY');
 
-
         const formAdd = new FormData();
         formAdd.append("tenPhim", values.tenPhim);
         formAdd.append("trailer", values.trailer);
@@ -52,11 +52,10 @@ export default function AddMovie({ setIsAddModalOpen, form, dayjs }) {
                 console.log(`${key}: ${value}`);
             }
             await getDataMovieAddNew(formAdd);
-            message.success("Thêm Phim thành công");
+            message.success(SUCCESS_MESSAGE_ADD_MOVIE);
             setIsAddModalOpen(false);
         } catch (error) {
-            message.error(error.response.data.content);
-            console.log(error);
+            message.error(ERROR_MESSAGE);
         }
     };
     return (

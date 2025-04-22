@@ -2,6 +2,7 @@ import React from 'react'
 import { getDataUserSearch } from '../../../api/api';
 import { message } from 'antd';
 import Search from 'antd/es/input/Search';
+import { ERROR_MESSAGE } from '../../../constant/constant';
 
 export default function SearchUser({ setUserSearchList, isSearch, setIsSearch }) {
     const fetchDataUserSearch = async (searchValue) => {
@@ -13,7 +14,7 @@ export default function SearchUser({ setUserSearchList, isSearch, setIsSearch })
             setIsSearch(true);
             message.success(`Có ${updatedUserSearchList.length} kết quả tìm kiếm tương tự`)
         } catch {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
         }
     };
     const handleSearchCancel = () => { setIsSearch(false) };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Select, message } from 'antd';
 import { getShowTimeByTheaterGroup } from '../api/api';
 import { NavLink } from 'react-router-dom';
+import { ERROR_MESSAGE } from '../constant/constant';
 
 export default function MovieFilterByName() {
     const [theaterGroupList, setTheaterGroupList] = useState([]);
@@ -32,7 +33,7 @@ export default function MovieFilterByName() {
             let response = await getShowTimeByTheaterGroup();
             setTheaterGroupList(response.data.content);
         } catch {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
         }
     };
     useEffect(() => { fetchDataTheaterList(); }, []);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ConfigProvider, Tabs, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { getShowTimeByTheaterGroup } from '../api/api';
-import { MONTHNAME } from '../constant/constant';
+import { ERROR_MESSAGE, MONTHNAME } from '../constant/constant';
 
 export default function ShowTimeListByTheater() {
     let navigate = useNavigate();
@@ -11,14 +11,10 @@ export default function ShowTimeListByTheater() {
         try {
             let response = await getShowTimeByTheaterGroup();
             setTheaterGroupList(response.data.content);
-            console.log("fdsfb", response.data.content);
-            console.log("repeat");
-
         } catch {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
         }
     };
-
 
     function handleButtonClick(link) {
         window.scrollTo({ top: 0, behavior: "smooth" });

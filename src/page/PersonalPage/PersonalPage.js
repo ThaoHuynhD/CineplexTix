@@ -4,11 +4,12 @@ import { userDetailLocalStorage, userLocalStorage } from '../../api/localService
 import PersonalDetail from './PersonalDetail';
 import BookingHistory from './BookingHistory';
 import { message } from 'antd';
+import { ERROR_MESSAGE_PERMISSION } from '../../constant/constant';
 
 export default function PersonalPage() {
     let info = userLocalStorage.get();
     if (info === null) {
-        message.error("Vui Lòng Đăng Nhập Để Sử dụng tính năng này");
+        message.error(ERROR_MESSAGE_PERMISSION);
         setTimeout(() => {
             window.location.href = '/sign-in';
         }, 1000);

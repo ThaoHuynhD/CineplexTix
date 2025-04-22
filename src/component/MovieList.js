@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getMovieList } from '../api/api';
 import { Modal, message } from 'antd';
 import { NavLink } from 'react-router-dom';
+import { ERROR_MESSAGE } from '../constant/constant';
 
 export default function MovieList() {
     const [movieList, setMovieList] = useState([]);
@@ -10,7 +11,7 @@ export default function MovieList() {
             let response = await getMovieList();
             setMovieList(response.data.content);
         } catch {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
         }
     };
     useEffect(() => { fetchData(); }, []);

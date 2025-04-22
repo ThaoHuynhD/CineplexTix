@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { getDataMovieUpdated } from '../../../api/api';
 import { Form, Input, Switch, message, Button, Image, DatePicker } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE_UPDATE_MOVIE } from '../../../constant/constant';
 
 export default function FixMovie({ setIsFixModalOpen, form, setSelectedImage, selectedImage, dayjs }) {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -52,11 +53,10 @@ export default function FixMovie({ setIsFixModalOpen, form, setSelectedImage, se
         }
         try {
             await getDataMovieUpdated(formFix);
-            message.success("Cập nhật thông tin phim thành công");
+            message.success(SUCCESS_MESSAGE_UPDATE_MOVIE);
             setIsFixModalOpen(false);
         } catch (error) {
-            message.error('Đã có lỗi xảy ra!!!');
-            console.log(error);
+            message.error(ERROR_MESSAGE);
         }
     };
 

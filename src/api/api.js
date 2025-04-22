@@ -1,5 +1,5 @@
 import { https } from "./config";
-const maNhom = 'GP07';
+const maNhom = 'GP02';
  
 export const getTicketBooked = (ticketInfo) => {
     return https.post(`/QuanLyDatVe/DatVe`, ticketInfo);

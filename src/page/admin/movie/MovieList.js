@@ -8,6 +8,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import dayjs from 'dayjs';
 import AddMovie from './AddMovie';
 import FixMovie from './FixMovie';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE_DELETE_MOVIE } from '../../../constant/constant';
 
 dayjs.extend(customParseFormat);
 
@@ -23,7 +24,7 @@ export default function MovieList({ setSelectedItem, setSelectedMaPhim }) {
             let response = await getMovieList();
             setMovieList(response.data.content);
         } catch {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
         }
     };
     const fetchDataMovieSearch = async (searchValue) => {
@@ -35,7 +36,7 @@ export default function MovieList({ setSelectedItem, setSelectedMaPhim }) {
             setIsSearch(true);
             message.success(`Có ${updatedMovieSearchList.length} kết quả tìm kiếm tương tự`)
         } catch {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
         }
     };
     const handleSearchCancel = () => { setIsSearch(false); };
@@ -43,11 +44,10 @@ export default function MovieList({ setSelectedItem, setSelectedMaPhim }) {
     const handleMovieDel = async (maPhim) => {
         try {
             await getDataMovieDeleteIfNoShowTime(maPhim);
-            message.success("Xóa phim thành công");
+            message.success(SUCCESS_MESSAGE_DELETE_MOVIE);
             fetchDataMovieList();
-        } catch (error) {
-            message.error(error.response.data.content);
-            console.log(error);
+        } catch {
+            message.error(ERROR_MESSAGE);
         }
     };
 
@@ -122,7 +122,7 @@ export default function MovieList({ setSelectedItem, setSelectedMaPhim }) {
             setSelectedImage(movie.hinhAnh);
             form.setFieldsValue(updatedMovie);
         } catch (error) {
-            message.error("Đã có lỗi xảy ra");
+            message.error(ERROR_MESSAGE);
             console.log(error.response.data);
         }
     };

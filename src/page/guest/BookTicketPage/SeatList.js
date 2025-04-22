@@ -8,11 +8,8 @@ export default function SeatList({ movieShowDetail, cart }) {
         { type: 'vip', color: 'gold', title: 'Ghế Hạng Vip' },
         { type: 'regular', color: 'white', title: 'Ghế Hạng Thường' }
     ];
-    console.log(chairColor)
-    if (!movieShowDetail || !movieShowDetail.danhSachGhe || !cart) {
-        return <div>Loading...</div>;
-    }
-    else return (
+
+    return (
         <div className='seatList relative'>
             <div className="h-32">
                 <div className="screen relative">

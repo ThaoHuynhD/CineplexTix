@@ -1,6 +1,7 @@
 import React from 'react'
 import { getDataUserInfoUpdated } from '../../../api/api';
 import { Form, Input, Select, message, Button } from 'antd';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE_UPDATE_USER } from '../../../constant/constant';
 
 export default function FixUser({ form, setIsFixModalOpen }) {
     const formItemLayout = {
@@ -24,11 +25,10 @@ export default function FixUser({ form, setIsFixModalOpen }) {
     const handleUserFix = async (values) => {
         try {
             await getDataUserInfoUpdated(values);
-            message.success("Cập nhật thông tin người dùng thành công");
+            message.success(SUCCESS_MESSAGE_UPDATE_USER);
             setIsFixModalOpen(false);
-        } catch (error) {
-            message.error(error.response.data.content);
-            console.log(error);
+        } catch {
+            message.error(ERROR_MESSAGE);
         }
     };
     return (
