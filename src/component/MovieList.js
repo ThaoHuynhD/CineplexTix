@@ -13,9 +13,7 @@ export default function MovieList() {
             message.error("Đã có lỗi xảy ra");
         }
     };
-    useEffect(() => {
-        fetchData();
-    }, []);
+    useEffect(() => { fetchData(); }, []);
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [activeMovie, setActiveMovie] = useState([]);

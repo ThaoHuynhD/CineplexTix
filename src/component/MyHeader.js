@@ -107,7 +107,6 @@ export default function MyHeader() {
                 navigate('/');
             }
             else {
-                navigate('/');
                 setTimeout(() => {
                     scrollIntoView(key);
                 }, 200);

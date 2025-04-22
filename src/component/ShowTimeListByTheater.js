@@ -11,12 +11,14 @@ export default function ShowTimeListByTheater() {
         try {
             let response = await getShowTimeByTheaterGroup();
             setTheaterGroupList(response.data.content);
-            console.log("repeat")
+            console.log("fdsfb", response.data.content);
+            console.log("repeat");
+
         } catch {
             message.error("Đã có lỗi xảy ra");
         }
     };
-    useEffect(() => { fetchDataTheaterList(); }, []);
+
 
     function handleButtonClick(link) {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -114,7 +116,8 @@ export default function ShowTimeListByTheater() {
         }
         theaterGroupListArr.push(theaterUpdate);
     })
-
+    useEffect(() => { fetchDataTheaterList(); }, []);
+    console.log("hi", theaterGroupList?.[0]?.lstCumRap?.[0]?.danhSachPhim?.[0]?.tenPhim);
     return (
         <section className='container'>
             <div className='bg-slate-900 xxl:mx-20'>
