@@ -2,11 +2,21 @@
   background-color: rgb(155, 19, 19);
   color: gold;
   font-weight: 700;
+  transition: all 0.5s;
 }
 
 .btn-red:hover {
   background-color: rgb(108, 29, 29);
   color: gold;
+}
+.btn-yellow {
+  color: white;
+  transition: all 0.5s;
+  font-weight: 500;
+}
+.btn-yellow:hover {
+  color: gold;
+  text-decoration: none;
 }
 .movie_info {
   display: none;
@@ -80,6 +90,9 @@
   > .ant-tabs-content
   > .ant-tabs-tabpane {
   padding: 0;
+}
+.ant-menu-item-selected {
+  background-color: #b139cc00 !important;
 }
 section {
   margin: 50px 80px;

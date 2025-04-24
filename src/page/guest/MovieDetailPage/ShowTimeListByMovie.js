@@ -89,14 +89,9 @@ export default function ShowTimeListByMovie({ maPhim }) {
     return (
         <div className='pt-32 pb-5 container text-center'>
             <div className='bg-slate-900'>
-                <ConfigProvider
-                    theme={{
-                        token: {
-                            colorPrimary: 'rgb(250 204 21 / var(--tw-text-opacity))',
-                        },
-                    }}
-                >
-                    {theaterGroupArr.length === 0 ? <NoData /> :
+                <ConfigProvider theme={{ token: { colorPrimary: '#facc15BF', }, }}>
+                    {theaterGroupArr.length === 0 ?
+                        <NoData smallTitle={'There are no comming up movie show schedule, please watch another movie!'} /> :
                         <Tabs
                             defaultActiveKey={1}
                             tabPosition={'top'}

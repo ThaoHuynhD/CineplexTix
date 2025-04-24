@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { getMovieList } from '../api/api';
 import { Modal, message } from 'antd';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { ERROR_MESSAGE } from '../constant/constant';
 import Loader from './Loader';
 import NoData from './NoData';
 
 export default function MovieList() {
     const [movieList, setMovieList] = useState(null);
-
+    const navigate = useNavigate();
     let fetchData = async () => {
         try {
             let response = await getMovieList();
@@ -29,7 +29,8 @@ export default function MovieList() {
     const handleCancel = () => {
         setIsModalVisible(false);
     };
-    function handleButtonClick() {
+    function handleButtonClick(maPhim) {
+        navigate(`/detail/:${maPhim}`);
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
     if (movieList === null) { return <Loader />; }

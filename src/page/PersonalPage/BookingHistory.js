@@ -4,11 +4,12 @@ import NoData from '../../component/NoData';
 
 export default function BookingHistory({ userDetail }) {
     let thongTinDatVe = userDetail.thongTinDatVe;
+
     if (!thongTinDatVe || !userDetail) {
         return <Loader />;
     }
     if (Array.isArray(thongTinDatVe) && thongTinDatVe.length === 0) {
-        return <NoData />;
+        return <NoData smallTitle="Please buy a new ticket to see here!"/>;
     }
     const renderDanhSachGheDaDat = (danhSachGhe) => {
         let chairArr = [];

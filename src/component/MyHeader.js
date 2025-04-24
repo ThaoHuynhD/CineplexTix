@@ -48,12 +48,12 @@ export default function MyHeader() {
         if (element) {
             const yOffset = -50; // scroll 50px higher
             const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    
+
             window.scrollTo({ top: y, behavior: 'smooth' });
         }
     };
     function scrollToTop() {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }
     const handleMenuItemClick = (key) => {
         setCurrent(key);
@@ -67,7 +67,7 @@ export default function MyHeader() {
             }
             else if (key === 'personal') {
                 if (isAdmin) return;
-                else navigate(`/${key}`);
+                else { navigate(`/${key}`); scrollToTop(); };
             }
             else if (key === 'sign-out') {
                 handleSignOut();
@@ -122,7 +122,7 @@ export default function MyHeader() {
                 return (
                     <Menu.Item
                         key={item.key}
-                        className={`${item.flexRight && (!showMobileMenu ? 'ml-auto' : '')} ${!item.flexRight || showMobileMenu ? 'ml-0' : ''} px-2`}
+                        className={`btn-yellow ${item.flexRight && (!showMobileMenu ? 'ml-auto' : '')} ${!item.flexRight || showMobileMenu ? 'ml-0' : ''} px-2`}
                     >
                         {item.label}
                     </Menu.Item>
@@ -148,7 +148,7 @@ export default function MyHeader() {
         mode: 'horizontal',
     });
     return <div className='mb-20'>
-        <ConfigProvider theme={{ token: { colorPrimary: 'rgb(155, 19, 19)', }, }}>
+        <ConfigProvider theme={{ token: { colorPrimary: '#fff00', colorTextLightSolid: '#ffd700' }, }}>
             {(isAdmin) ? (menuAdminComponent) : (
                 <div style={{ backgroundColor: '#001529' }} className='fixed top-0 w-screen z-50 font-bold'>
                     <div className="container">

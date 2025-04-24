@@ -16,7 +16,7 @@ export default function MovieInfo({ maPhim }) {
 
     useEffect(() => {
         fetchDataMovieDetail();
-    }, []);
+    }, [maPhim]);
 
     return (
         <div>

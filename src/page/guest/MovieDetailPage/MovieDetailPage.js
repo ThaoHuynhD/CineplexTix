@@ -10,7 +10,7 @@ export default function MovieDetailPage() {
     <div className='pt-20'>
       <MovieInfo maPhim={maPhim} />
       <ShowTimeListByMovie maPhim={maPhim} />
-      <MovieList />
+      <MovieList/>
     </div>
   )
 }
