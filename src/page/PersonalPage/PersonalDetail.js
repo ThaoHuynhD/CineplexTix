@@ -7,27 +7,14 @@ import { useDispatch } from 'react-redux';
 import Loader from '../../component/Loader';
 
 export default function PersonalDetail({ userDetail }) {
+
     const [form] = Form.useForm();
     let dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const formItemLayout = {
-        labelCol: {
-            xs: {
-                span: 24,
-            },
-            sm: {
-                span: 8,
-            },
-        },
-        wrapperCol: {
-            xs: {
-                span: 24,
-            },
-            sm: {
-                span: 16,
-            },
-        },
+        labelCol: { xs: { span: 24, }, sm: { span: 8, }, },
+        wrapperCol: { xs: { span: 24, }, sm: { span: 16, }, },
     };
     useEffect(() => {
         if (userDetail !== null) {
@@ -80,6 +67,51 @@ export default function PersonalDetail({ userDetail }) {
         setIsModalOpen(false);
     };
     const maskedPassword = '*'.repeat(userDetail.matKhau.length);
+    let titleList = [
+        { title: "Tên Tài Khoản", value: userDetail.taiKhoan },
+        { title: "Mật Khẩu", value: maskedPassword },
+        { title: "Số Điện Thoại", value: userDetail.soDT },
+        { title: "Họ Và Tên", value: userDetail.hoTen },
+        { title: "Địa Chỉ Email", value: userDetail.email },];
+    let formList = [
+        {
+            name: "taiKhoan", label: "Tên Tài Khoản",
+            rules: [{ required: true, message: 'Vui lòng nhập tên tài khoản', whitespace: true }],
+            inputType: <Input />
+        },
+        {
+            name: "matKhau", label: "Mật Khẩu",
+            rules: [{ required: true, message: 'Vui lòng nhập mật khẩu!' }],
+            inputType: <Input.Password />
+        },
+        {
+            name: "soDT", label: "Số Điện Thoại",
+            rules: [{ required: true, message: 'Vui lòng nhập số điện thoại!', whitespace: true }],
+            inputType: <Input />
+        },
+        {
+            name: "maNhom", label: "Mã Nhóm", className: "d-none",
+            rules: [{ required: true, message: 'Vui lòng nhập mã nhóm!', whitespace: true }],
+            inputType: <Input disabled={true} placeholder={userDetail.maNhom} />
+        },
+        {
+            name: "maLoaiNguoiDung", label: "Mã Loại Người Dùng", className: "d-none",
+            rules: [{ required: true, message: 'Vui lòng nhập mã loại người dùng!', whitespace: true }],
+            inputType: <Input disabled={true} placeholder={userDetail.maLoaiNguoiDung} />
+        },
+        {
+            name: "hoTen", label: "Họ Và Tên",
+            rules: [{ required: true, message: 'Vui lòng nhập họ tên của bạn!', whitespace: true }],
+            inputType: <Input />
+        },
+        {
+            name: "email", label: "Địa Chỉ Email",
+            rules: [
+                { type: 'email', message: 'The input is not valid E-mail!' },
+                { required: true, message: 'Please input your E-mail!' }],
+            inputType: <Input />
+        },
+    ]
     return (
         <div className='container pt-20'>
             <div className="text-center py-5"><span className='lg:px-5 px-2 py-2 text-3xl my-5 mx-auto font-semibold 
@@ -87,26 +119,12 @@ export default function PersonalDetail({ userDetail }) {
             <div className=' lg:w-1/2 mx-auto'>
                 <table className='table border-hidden text-white bg-slate-600 rounded-2xl overflow-hidden'>
                     <tbody>
-                        <tr>
-                            <th>Tên Tài Khoản</th>
-                            <td>{userDetail.taiKhoan}</td>
-                        </tr>
-                        <tr>
-                            <th>Mật Khẩu</th>
-                            <td>{maskedPassword}</td>
-                        </tr>
-                        <tr>
-                            <th>Số Điện Thoại</th>
-                            <td>{userDetail.soDT}</td>
-                        </tr>
-                        <tr>
-                            <th>Họ Và Tên</th>
-                            <td>{userDetail.hoTen}</td>
-                        </tr>
-                        <tr>
-                            <th>Địa Chỉ Email</th>
-                            <td>{userDetail.email}</td>
-                        </tr>
+                        {titleList.map((item) => {
+                            return <tr key={item.key}>
+                                <th>{item.title}</th>
+                                <td>{item.value}</td>
+                            </tr>
+                        })}
                     </tbody>
                 </table>
                 <div className="text-center mb-20">
@@ -126,97 +144,18 @@ export default function PersonalDetail({ userDetail }) {
                         form={form}
                         name="register"
                         onFinish={onFinish}
-                        style={{
-                            maxWidth: 1000,
-                        }}
+                        style={{ maxWidth: 1000 }}
                         scrollToFirstError
                     >
-                        <Form.Item name="taiKhoan"
-                            label="Tên Tài Khoản"
-                            tooltip="Bạn muốn được gọi là?"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Vui lòng nhập tên tài khoản',
-                                    whitespace: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name="matKhau"
-                            label="Mật Khẩu"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Vui lòng nhập mật khẩu!',
-                                },
-                            ]}
-                            hasFeedback
-                        >
-                            <Input.Password />
-                        </Form.Item>
-                        <Form.Item name="soDT"
-                            label="Số Điện Thoại"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Vui lòng nhập số điện thoại!',
-                                    whitespace: true,
-                                },
-                            ]}>
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name="maNhom"
-                            label="Mã Nhóm"
-                            className='d-none'
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Vui lòng nhập mã nhóm!',
-                                    whitespace: true,
-                                },
-                            ]}>
-                            <Input disabled={true} placeholder={userDetail.maNhom} />
-                        </Form.Item>
-                        <Form.Item name="maLoaiNguoiDung"
-                            label="Mã Loại Người Dùng"
-                            className='d-none'
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Vui lòng nhập mã loại người dùng!',
-                                    whitespace: true,
-                                },
-                            ]}>
-                            <Input disabled={true} placeholder={userDetail.maLoaiNguoiDung} />
-                        </Form.Item>
-                        <Form.Item name="hoTen"
-                            label="Họ Và Tên"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Vui lòng nhập họ tên của bạn!',
-                                    whitespace: true,
-                                },
-                            ]}>
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name="email"
-                            label="Địa Chỉ Email"
-                            rules={[
-                                {
-                                    type: 'email',
-                                    message: 'The input is not valid E-mail!',
-                                },
-                                {
-                                    required: true,
-                                    message: 'Please input your E-mail!',
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
+                        {formList.map((item) => {
+                            return <Form.Item name={item.name}
+                                label={item.label}
+                                rules={item.rules}
+                                className={item.className}
+                            >
+                                {item.inputType}
+                            </Form.Item>
+                        })}
                         <Button className='btn-red' htmlType="submit">
                             Cập nhật
                         </Button>

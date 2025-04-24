@@ -27,7 +27,7 @@ export default function ShowTimeListByTheater() {
             <div key={index}>
                 <button
                     className="btn btn-dark lg:px-auto px-2 w-full"
-                    onClick={() => handleButtonClick(`/purchasing/${show.maLichChieu}`)}
+                    onClick={() => handleButtonClick(`/purchasing/:${show.maLichChieu}`)}
                 >
                     <div className="flex justify-center">
                         <p className="text-white w-24">
@@ -57,7 +57,7 @@ export default function ShowTimeListByTheater() {
                         <button
                             type="button"
                             className="btn btn-red my-3 px-auto"
-                            onClick={() => handleButtonClick(`/detail/${movie.maPhim}`)}
+                            onClick={() => handleButtonClick(`/detail/:${movie.maPhim}`)}
                         >
                             Chi Tiết Phim
                         </button>
@@ -125,9 +125,8 @@ export default function ShowTimeListByTheater() {
         ),
     }));
 
-    useEffect(() => {
-        fetchDataTheaterList();
-    }, []);
+    useEffect(() => { fetchDataTheaterList(); }, []);
+
     return (
         <section className='container'>
             <div className='bg-slate-900 xxl:mx-20'>

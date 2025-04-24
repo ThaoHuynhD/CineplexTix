@@ -24,8 +24,7 @@
   border: solid var(--c) transparent;
   border-radius: 15%;
   border-top-color: #7bffff;
-  background: radial-gradient(farthest-side, #7bffff 98%, transparent) left 4%
-      top 4%,
+  background: radial-gradient(farthest-side, #7bffff 98%, transparent) left 4% top 4%,
     radial-gradient(farthest-side, #7bffff 98%, transparent) right 4% top 4.1%;
   background-size: var(--c) var(--c);
   background-origin: border-box;
@@ -58,28 +57,16 @@
   > .ant-tabs-tabpane {
   padding-left: 0;
 }
-:where(.css-dev-only-do-not-override-xu9wm8).ant-btn-default:not(:disabled):not(
-    .ant-btn-disabled
-  ):hover {
+:where(.css-dev-only-do-not-override-xu9wm8).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
   color: gold;
   border-color: gold;
   background-color: rgb(108, 29, 29);
 }
 
-:where(.css-dev-only-do-not-override-1omu73a).ant-tabs-left
-  > .ant-tabs-nav
-  .ant-tabs-tab,
-:where(.css-dev-only-do-not-override-1omu73a).ant-tabs-right
-  > .ant-tabs-nav
-  .ant-tabs-tab,
-:where(.css-dev-only-do-not-override-1omu73a).ant-tabs-left
-  > div
-  > .ant-tabs-nav
-  .ant-tabs-tab,
-:where(.css-dev-only-do-not-override-1omu73a).ant-tabs-right
-  > div
-  > .ant-tabs-nav
-  .ant-tabs-tab {
+:where(.css-dev-only-do-not-override-1omu73a).ant-tabs-left > .ant-tabs-nav .ant-tabs-tab,
+:where(.css-dev-only-do-not-override-1omu73a).ant-tabs-right > .ant-tabs-nav .ant-tabs-tab,
+:where(.css-dev-only-do-not-override-1omu73a).ant-tabs-left > div > .ant-tabs-nav .ant-tabs-tab,
+:where(.css-dev-only-do-not-override-1omu73a).ant-tabs-right > div > .ant-tabs-nav .ant-tabs-tab {
   padding: 5px;
 }
 
@@ -96,15 +83,18 @@
 }
 section {
   margin: 50px 80px;
+  padding-top: 50px;
   color: #2bdd49;
 }
 /* loader */
-/* From Uiverse.io by Victan78 */ 
+/* From Uiverse.io by Victan78 */
 .loader {
   width: 100px;
   height: 100px;
   border: solid 4px rgba(231, 231, 231, 0);
   border-top: solid 5px rgb(241, 68, 68);
+  border-top: solid 5px #ffdede;
+
   border-radius: 50%;
   transition: all 0.5s;
   animation: rotation_51512 1.2s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);

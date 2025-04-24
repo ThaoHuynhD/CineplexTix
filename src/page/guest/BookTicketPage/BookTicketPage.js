@@ -36,6 +36,7 @@ export default function BookTicketPage() {
     };
     fetchDataMovieShowDetail();
   }, [maLichChieu]);
+
   if (!movieShowDetail || !movieShowDetail.danhSachGhe || !cart) {
     return <Loader />;
   }

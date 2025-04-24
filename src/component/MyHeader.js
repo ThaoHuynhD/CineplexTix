@@ -46,7 +46,10 @@ export default function MyHeader() {
     const scrollIntoView = (id) => {
         const element = document.getElementById(id);
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            const yOffset = -50; // scroll 50px higher
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    
+            window.scrollTo({ top: y, behavior: 'smooth' });
         }
     };
     function scrollToTop() {
@@ -131,6 +134,7 @@ export default function MyHeader() {
     const menuAdminComponent = renderMenu({
         className: 'p-2 gap-3 flex-auto',
         mode: 'horizontal',
+        filterCondition: item => item.showMenu === true,
     });
 
     const menuUserMobileComponent = renderMenu({

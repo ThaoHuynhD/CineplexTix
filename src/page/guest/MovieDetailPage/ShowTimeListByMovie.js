@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getShowTimeByMovie } from '../../../api/api';
 import { NavLink } from 'react-router-dom';
 import { ERROR_MESSAGE, MONTHNAME } from '../../../constant/constant'
+import NoData from '../../../component/NoData';
 
 export default function ShowTimeListByMovie({ maPhim }) {
     let [theaterGroupList, setTheaterGroupList] = useState([]);
@@ -19,6 +20,7 @@ export default function ShowTimeListByMovie({ maPhim }) {
     useEffect(() => {
         fetchDataMovieDetail(maPhim);
     }, [maPhim]);
+
     const renderShowTimeList = (theater) => {
         return theater.lichChieuPhim.map((show, index) => {
             return (
@@ -27,8 +29,8 @@ export default function ShowTimeListByMovie({ maPhim }) {
                         <button className='btn btn-dark px-0 mx-1 lg:ml-4 my-2 w-full lg:w-40'>
                             <div className="flex justify-center">
                                 <p className='text-white'>{MONTHNAME[Math.round(show.ngayChieuGioChieu.substring(5, 7) - 1)]}
-                                <br/>
-                                <span className='text-white text-2xl font-bold'>{show.ngayChieuGioChieu.substring(8, 10)}</span></p>
+                                    <br />
+                                    <span className='text-white text-2xl font-bold'>{show.ngayChieuGioChieu.substring(8, 10)}</span></p>
                                 <p className='text-yellow-500 text-3xl justify-center pl-2 self-center'><b> {show.ngayChieuGioChieu.substring(14, 20)}</b></p>
                             </div>
                         </button>
@@ -86,8 +88,6 @@ export default function ShowTimeListByMovie({ maPhim }) {
     }
     return (
         <div className='pt-32 pb-5 container text-center'>
-            <h1 className={`mt-5 text-3xl font-bold ${theaterGroupArr.length === 0 ? 'block' : 'hidden'}`}
-            >Chưa có Thời gian chiếu phim cụ thể.<br /> Vui lòng thử lại sau</h1>
             <div className='bg-slate-900'>
                 <ConfigProvider
                     theme={{
@@ -96,11 +96,13 @@ export default function ShowTimeListByMovie({ maPhim }) {
                         },
                     }}
                 >
-                    <Tabs
-                        defaultActiveKey={1}
-                        tabPosition={'top'}
-                        items={theaterGroupArr}
-                        className={`mt-10 lg:p-2 lg:mb-2 max-h-750 overflow-hidden ${theaterGroupArr.length !== 0 ? 'border' : ''}`} />
+                    {theaterGroupArr.length === 0 ? <NoData /> :
+                        <Tabs
+                            defaultActiveKey={1}
+                            tabPosition={'top'}
+                            items={theaterGroupArr}
+                            className={`mt-10 lg:p-2 lg:mb-2 max-h-750 overflow-hidden ${theaterGroupArr.length !== 0 ? 'border' : ''}`} />
+                    }
                 </ConfigProvider>
             </div>
         </div >

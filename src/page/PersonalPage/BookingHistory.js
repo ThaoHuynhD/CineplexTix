@@ -1,10 +1,14 @@
 import React from 'react'
 import Loader from '../../component/Loader';
+import NoData from '../../component/NoData';
 
 export default function BookingHistory({ userDetail }) {
     let thongTinDatVe = userDetail.thongTinDatVe;
     if (!thongTinDatVe || !userDetail) {
         return <Loader />;
+    }
+    if (Array.isArray(thongTinDatVe) && thongTinDatVe.length === 0) {
+        return <NoData />;
     }
     const renderDanhSachGheDaDat = (danhSachGhe) => {
         let chairArr = [];
@@ -58,7 +62,6 @@ export default function BookingHistory({ userDetail }) {
                 </div>)
         })
     }
-
 
     return (
         <div className=''>
