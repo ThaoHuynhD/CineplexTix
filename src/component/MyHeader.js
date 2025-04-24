@@ -37,42 +37,6 @@ export default function MyHeader() {
         };
     }, []);
 
-    const menuLeftArr = [
-        {
-            label: <img src={logoURL} className='w-48 mt-2' alt='cineplextix' />,
-            key: 'movieBanner',
-            showMenu: true,
-        },
-        { label: 'Lịch Chiếu', key: 'schedule', },
-        { label: 'Cụm Rạp', key: 'groupcinema', },
-        { label: 'Tin Tức', key: 'myNews', },
-        { label: 'Ứng Dụng', key: 'myApps', },
-
-    ];
-    const menuRightArr = [
-        {
-            label: info !== null ? (showMobileMenu ? 'Trang Cá Nhân' : info.taiKhoan) : 'Đăng Nhập',
-            key: info !== null ? 'personal' : 'sign-in',
-            flexRight: true,
-            showMenu: true,
-        },
-        {
-            label: info !== null ? 'Đăng Xuất' : 'Đăng Ký',
-            key: info !== null ? 'sign-out' : 'sign-up',
-            showMenu: true,
-        },
-        {
-            label: showMobileMenu ? <CloseOutlined /> :
-                (<button className={`mx-auto ${isMobileWidth ? 'block' : 'hidden'}`}>
-                    <MenuOutlined />
-                </button>),
-            key: 'menuBar',
-            showMenu: true,
-        },
-    ];
-
-    const menuUserArr = [...menuLeftArr, ...menuRightArr];
-    const menuAdminArr = [...menuRightArr];
     let handleSignOut = () => {
         userLocalStorage.remove();
         userDetailLocalStorage.remove();
@@ -115,73 +79,78 @@ export default function MyHeader() {
             setShowMobileMenu(false);
         }
     };
-
-    return <div className='mb-20'>
-        <ConfigProvider
-            theme={{
-                token: {
-                    colorPrimary: 'rgb(155, 19, 19)',
-                },
-            }}
+    const menuArr = [
+        {
+            label: <img src={logoURL} className='w-48 mt-2' alt='cineplextix' />, key: 'movieBanner',
+            showMenu: true
+        },
+        { label: 'Lịch Chiếu', key: 'schedule' },
+        { label: 'Cụm Rạp', key: 'groupcinema' },
+        { label: 'Tin Tức', key: 'myNews' },
+        { label: 'Ứng Dụng', key: 'myApps' },
+        {
+            label: info !== null ? (showMobileMenu ? 'Trang Cá Nhân' : info.taiKhoan) : 'Đăng Nhập',
+            key: info !== null ? 'personal' : 'sign-in',
+            flexRight: true,
+            showMenu: true,
+        },
+        {
+            label: info !== null ? 'Đăng Xuất' : 'Đăng Ký',
+            key: info !== null ? 'sign-out' : 'sign-up',
+            showMenu: true,
+        },
+        {
+            label: showMobileMenu ? <CloseOutlined /> : (<button className={`mx-auto ${isMobileWidth ? 'block' : 'hidden'}`}><MenuOutlined /></button>),
+            key: 'menuBar',
+            showMenu: true,
+        },
+    ]
+    const renderMenu = ({ className, mode, filterCondition }) => (
+        <Menu
+            id="myHeader"
+            theme="dark"
+            className={className}
+            onClick={({ key }) => handleMenuItemClick(key)}
+            selectedKeys={[current]}
+            mode={mode}
         >
-            {(isAdmin) ? (
-                <Menu
-                    id='myHeader'
-                    theme={'dark'}
-                    className='p-2 gap-3 flex-auto'
-                    onClick={({ key }) => handleMenuItemClick(key)}
-                    mode="horizontal"
-                >
-                    {menuAdminArr.map((item) => {
-                        return <Menu.Item key={item.key}
-                            className={`mr-20 ${item.flexRight ? 'ml-auto' : 'ml-0'}`}
-                        >{item.label}</Menu.Item>
-                    })}
-                </Menu>
-            ) : (
+            {menuArr.map((item) => {
+                if (filterCondition && !filterCondition(item)) return null;
+                return (
+                    <Menu.Item
+                        key={item.key}
+                        className={`${item.flexRight && (!showMobileMenu ? 'ml-auto' : '')} ${!item.flexRight || showMobileMenu ? 'ml-0' : ''} px-2`}
+                    >
+                        {item.label}
+                    </Menu.Item>
+                );
+            })}
+        </Menu>
+    );
+
+    const menuAdminComponent = renderMenu({
+        className: 'p-2 gap-3 flex-auto',
+        mode: 'horizontal',
+    });
+
+    const menuUserMobileComponent = renderMenu({
+        className: 'py-2 m-0 text-center align-middle',
+        mode: showMobileMenu ? 'vertical' : 'horizontal',
+        filterCondition: (item) => item.showMenu || showMobileMenu,
+    });
+
+    const menuUserDestopComponent = renderMenu({
+        className: 'lg:p-2 leading-extra-loose py-2 m-0 text-center lg:text-left align-middle',
+        mode: 'horizontal',
+    });
+    return <div className='mb-20'>
+        <ConfigProvider theme={{ token: { colorPrimary: 'rgb(155, 19, 19)', }, }}>
+            {(isAdmin) ? (menuAdminComponent) : (
                 <div style={{ backgroundColor: '#001529' }} className='fixed top-0 w-screen z-50 font-bold'>
                     <div className="container">
-                        {(isMobileWidth) ? (
-                            <Menu
-                                id='myHeader'
-                                theme={'dark'}
-                                className='py-2 m-0 text-center align-middle'
-                                onClick={({ key }) => handleMenuItemClick(key)}
-                                selectedKeys={[current]}
-                                mode={showMobileMenu ? 'vertical' : 'horizontal'}
-                            >
-                                {menuUserArr.map((item) => {
-                                    return (item.showMenu || showMobileMenu) && (
-                                        <Menu.Item
-                                            key={item.key}
-                                            className={`px-2 ${item.flexRight && showMobileMenu === false ? 'ml-auto' : 'ml-0'} 
-                                        `}
-                                        >{item.label}
-                                        </Menu.Item>
-                                    );
-                                })}
-                            </Menu>
-                        ) : (
-                            <Menu
-                                id='myHeader'
-                                theme={'dark'}
-                                className='lg:p-2 leading-extra-loose py-2 m-0 text-center lg:text-left align-middle'
-                                onClick={({ key }) => handleMenuItemClick(key)}
-                                selectedKeys={[current]}
-                                mode={'horizontal'}
-                            >
-                                {menuUserArr.map((item) => (
-                                    <Menu.Item
-                                        key={item.key}
-                                        className={`px-2 ${item.flexRight ? 'ml-auto' : 'ml-0'}`}>
-                                        {item.label}
-                                    </Menu.Item>
-                                ))}
-                            </Menu>
-                        )}
+                        {(isMobileWidth) ? (menuUserMobileComponent) : (menuUserDestopComponent)}
                     </div>
-                </div>
-            )}
+                </div>)}
         </ConfigProvider>
     </div>
 };
